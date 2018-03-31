@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ball</title>
+    <style>
+      body{background:#eee;}
+      canvas{background:#fff;}
+    </style>
+</head>
+
+<body>
+  <canvas id="canvas" width=600 height=300></canvas>
+</body>
+<script>
+    var canvas = document.getElementById("canvas")
+    var ctx = canvas.getContext("2d")
+    
+    var circle = {
+      x: 100,
+      y: 100,
+      deltaX: 3,
+      deltaY: 2
+    }
+    
+    ctx.fillStyle = "blue"
+    ctx.arc(100, 100, 50, 0, Math.PI*2);
+    ctx.fill()
+    
+    function move(){
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      ctx.beginPath()
+      if(circle.x + circle.deltaX + 25 > canvas.width || circle.x + circle.deltaX - 25 < 0){
+        circle.deltaX  = -circle.deltaX
+      }
+      if(circle.y + circle.deltaY + 25 > canvas.height || circle.y + circle.deltaY - 25 < 0){
+        circle.deltaY  = -circle.deltaY
+      }
+      circle.x += circle.deltaX
+      circle.y += circle.deltaY
+      ctx.arc(circle.x, circle.y, 50, 0, Math.PI*2);
+      ctx.fill()
+    }
+    
+    setInterval(move, 16)
+</script>
+
+</html>
