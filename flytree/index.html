@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>几棵树</title>
+    <style>
+      body{background:#eee;}
+      canvas{background:#fff;}
+    </style>
+</head>
+
+<body>
+  <canvas id="canvas" width=1000 height=500></canvas>
+</body>
+<script>
+    var canvas = document.getElementById("canvas")
+    var ctx = canvas.getContext("2d")
+    
+    var sky = new Image()
+    sky.src = "sky.png"
+    var grass = new Image()
+    grass.src = "grass.png"
+    var tree = new Image()
+    tree.src="tree-twotrunks.png"
+    
+    var smalltree = new Image()
+    smalltree.src = "smalltree.png"
+    
+    var skyOffset = 0;
+    var grassOffset = 0;
+    var treeOffset = 0;
+    var smallOffset = 0;
+    
+    function drawSky(){
+      ctx.save()
+      if(skyOffset < -canvas.width){
+        skyOffset = 0;
+      }
+      ctx.translate(skyOffset, 0);
+      ctx.drawImage(sky, 0, 0);
+      ctx.drawImage(sky, canvas.width, 0);
+      
+      skyOffset -= 0.1;
+      ctx.restore();
+    }
+    function drawGrass(){
+      ctx.save()
+      if(grassOffset < -canvas.width){
+        grassOffset = 0;
+      }
+      ctx.translate(grassOffset, 0);
+      ctx.drawImage(grass, 0, 450);
+      ctx.drawImage(grass, canvas.width-2, 450);
+      grassOffset -= 3;
+      ctx.restore();
+    }
+    function drawTree(){
+      ctx.save()
+      if(treeOffset < -canvas.width){
+        treeOffset = 0;
+      }
+      ctx.translate(treeOffset, 0);
+      ctx.drawImage(tree, 100, 300);
+      ctx.drawImage(tree, 500, 300);
+      ctx.drawImage(tree, 900, 300);
+      ctx.drawImage(tree, 1300, 300);
+      ctx.drawImage(tree, 1700, 300);
+      treeOffset -= 1;
+      ctx.restore();
+    }
+    function drawSmall(){
+      ctx.save()
+      if(smallOffset < -canvas.width){
+        smallOffset = 0;
+      }
+      ctx.translate(smallOffset, 0);
+      ctx.drawImage(smalltree, 100, 260);
+      ctx.drawImage(smalltree, 300, 260);
+      ctx.drawImage(smalltree, 500, 260);
+      ctx.drawImage(smalltree, 700, 260);
+      ctx.drawImage(smalltree, 900, 260);
+      ctx.drawImage(smalltree, 1100, 260);
+      ctx.drawImage(smalltree, 1300, 260);
+      ctx.drawImage(smalltree, 1500, 260);
+      ctx.drawImage(smalltree, 1700, 260);
+      ctx.drawImage(smalltree, 1900, 260);
+      smallOffset -= 0.3;
+      ctx.restore();
+    }
+    
+    function draw(){
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        drawSky();
+        drawSmall();
+        drawTree();
+        drawGrass();
+        requestAnimationFrame(draw)
+    }
+    tree.onload = function(){
+      draw()
+    }
+    
+</script>
+
+</html>

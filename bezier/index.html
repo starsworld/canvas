@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>五环，五环，你比四环多一环</title>
+    <style>
+      body{background:#eee;}
+      canvas{background:#fff;box-shadow:4px 4px 8px rgba(0, 0,0,0.5)}
+      .controls{position:absolute;left:520px;top:20px;}
+    </style>
+</head>
+
+<body>
+    <div class='controls'>
+       <input id='directionCheckbox' type='checkbox'/>One<br/>
+       <input id='annotationCheckbox' type='checkbox'/>Grid<br/>
+    </div>
+  <canvas id="canvas" width=600 height=300></canvas>
+</body>
+<script>
+    var canvas = document.getElementById("canvas")
+    var ctx = canvas.getContext("2d")
+    
+    ctx.lineWidth = 15
+      ctx.strokeStyle = "rgba(90, 40, 10, 0.5)";
+      ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+      ctx.shadowBlur = 15;
+      ctx.shadowOffsetX = 12;
+      ctx.shadowOffsetY = 12;
+      
+      ctx.moveTo(20, 40);
+      ctx.quadraticCurveTo(110, 220, 332, 90);
+      ctx.stroke()
+</script>
+
+</html>
